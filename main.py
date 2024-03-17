@@ -28,30 +28,30 @@ def window():
     winlabel.pack(pady=30)
 
 
-def passwd_gen():
+def passwd_gen(): 
 
     char = "abcdefghijklmnopqrstuvwcxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~<>?!@#$%&*[]_-^.,"
 
     len_str = entry2.get()
 
 
-    
-    length = int(len_str)
-    if length <= 7:
-        window()
-    else:
-        password = ""
-        for passchar in range(length):
-            passchar = random.choice(char)
-            password += passchar
+    try:
+        length = int(len_str)
+        if length <= 7:
+            window()
+        else:
+            password = ""
+            for passchar in range(length):
+                passchar = random.choice(char)
+                password += passchar
         
-        delete_gen()
-        gen_pass_text.configure(state="normal")
-        gen_pass_text.insert("1.0", text=password)
-        gen_pass_text.configure(state="disabled")
+            delete_gen()
+            gen_pass_text.configure(state="normal")
+            gen_pass_text.insert("1.0", text=password)
+            gen_pass_text.configure(state="disabled")
 
-   
-    window()
+    except ValueError:
+        window()
 
 
 def passwd_encrypt():
