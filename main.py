@@ -38,7 +38,7 @@ def passwd_gen():
     try:
         length = int(len_str)
         if length <= 7:
-            window()
+            return window()
         else:
             password = ""
             for passchar in range(length):
@@ -51,7 +51,7 @@ def passwd_gen():
             gen_pass_text.configure(state="disabled")
 
     except ValueError:
-        window()
+        return window()
 
 
 def passwd_encrypt():
