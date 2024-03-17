@@ -1,10 +1,6 @@
 import customtkinter as ctk
 import random
 
-###############################################################################################
-
-#######################################[MAIN WINDOW]###########################################
-
 main_window = ctk.CTk()
 
 main_window.title("VMPass")
@@ -19,11 +15,8 @@ mainlabel1.place(x=90,y=30)
 mainlabel2 = ctk.CTkLabel(main_window, text="GERADOR", font=("Helvetica",23,"bold"))
 mainlabel2.place(x=440,y=30)
 
-##############################################################################################
 
-#########################################[FUNCTIONS ]#########################################
-
-def window():   # Error window
+def window():
 
 
     window = ctk.CTkToplevel(main_window)
@@ -35,33 +28,33 @@ def window():   # Error window
     winlabel.pack(pady=30)
 
 
-def passwd_gen():   # Password generator
+def passwd_gen():
 
     char = "abcdefghijklmnopqrstuvwcxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~<>?!@#$%&*[]_-^.,"
 
     len_str = entry2.get()
 
 
-    try:
-        length = int(len_str)
-        if length <= 7:
-            window()
-        else:
-            password = ""
-            for passchar in range(length):
-                passchar = random.choice(char)
-                password += passchar
-        
-            delete_gen()
-            gen_pass_text.configure(state="normal")
-            gen_pass_text.insert("1.0", text=password)
-            gen_pass_text.configure(state="disabled")
-
-    except ValueError:
+    
+    length = int(len_str)
+    if length <= 7:
         window()
+    else:
+        password = ""
+        for passchar in range(length):
+            passchar = random.choice(char)
+            password += passchar
+        
+        delete_gen()
+        gen_pass_text.configure(state="normal")
+        gen_pass_text.insert("1.0", text=password)
+        gen_pass_text.configure(state="disabled")
+
+   
+    window()
 
 
-def passwd_encrypt():   # Password encryption
+def passwd_encrypt():
     passwd = ""
 
     text = entry1.get()
@@ -83,27 +76,25 @@ def passwd_encrypt():   # Password encryption
     passwd_text.configure(state="disabled")
 
 
-def delete_encrypt():   # Deletes encrypted password text box
+def delete_encrypt():
      passwd_text.configure(state="normal")
      passwd_text.delete("1.0", "end")
      passwd_text.configure(state="disabled")
 
-def delete_gen():   # Deletes generated password text box
+def delete_gen(): 
     gen_pass_text.configure(state="normal")
     gen_pass_text.delete("1.0", "end")
     gen_pass_text.configure(state="disabled")
 
-def clipper():  # Copies encrypted password to clipboard
+def clipper(): 
     main_window.clipboard_clear()
     main_window.clipboard_append(passwd_text.get("1.0","end"))
 
-def clipper_gen():  # Copies generated password to clipboard
+def clipper_gen(): 
     main_window.clipboard_clear()
     main_window.clipboard_append(gen_pass_text.get("1.0","end"))
 
-###############################################################################################################################
 
-##################################################[PASSWORD ENCRYPTER FRAME]###################################################
 frame = ctk.CTkFrame(main_window, width=320, height=320, fg_color="#808080").place(x=10, y=70)
 
 
@@ -138,10 +129,6 @@ label.place(x=101, y=260)
 passwd_text = ctk.CTkTextbox(frame, width=200, height=40, font=("Helvetica", 16))
 passwd_text.configure(state="disabled")
 passwd_text.place(x=76, y=290)
-
-##############################################################################################################################
-
-##################################################[PASSWORD GENERATOR FRAME]##################################################
 
 frame2 = ctk.CTkFrame(main_window, width=310, height=320, fg_color="#808080").place(x=340, y=70)
 
@@ -183,8 +170,5 @@ gen_pass_text.place(x=396, y=260)
 
 entry2 = ctk.CTkEntry(frame2, width=200, height=40, corner_radius=0)
 entry2.place(x=396, y=140)
-
-
-##############################################################################################################################
 
 main_window.mainloop()
