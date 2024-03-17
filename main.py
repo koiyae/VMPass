@@ -69,7 +69,7 @@ def passwd_encrypt():
         elif letter in "Ss": passwd += "9"
         elif letter in "Tt": passwd += "$r"
         elif letter in "Hh": passwd += "~"
-        else: passwd = passwd + letter
+        else: passwd += letter
     delete_encrypt()
     passwd_text.configure(state="normal")
     passwd_text.insert("1.0",text=passwd)
